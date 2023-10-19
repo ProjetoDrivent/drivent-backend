@@ -1,7 +1,7 @@
-import { TicketStatus } from '@prisma/client';
+import { Room, TicketStatus } from '@prisma/client';
 import { invalidDataError, notFoundError } from '@/errors';
 import { cannotListHotelsError } from '@/errors/cannot-list-hotels-error';
-import { enrollmentRepository, hotelRepository, ticketsRepository } from '@/repositories';
+import { bookingRepository, enrollmentRepository, hotelRepository, ticketsRepository } from '@/repositories';
 
 async function validateUserBooking(userId: number) {
   const enrollment = await enrollmentRepository.findWithAddressByUserId(userId);
@@ -34,7 +34,14 @@ async function getHotelsWithRooms(userId: number, hotelId: number) {
   const hotelWithRooms = await hotelRepository.findRoomsByHotelId(hotelId);
   if (!hotelWithRooms) throw notFoundError();
 
-  return hotelWithRooms;
+  const withBookings: Array<Room & { bookings?: number }> = [...hotelWithRooms.Rooms];
+
+  for (let i = 0; i < withBookings.length; i++) {
+    const bookingsList = await bookingRepository.findByRoomId(withBookings[i].id);
+    withBookings[i] = { ...withBookings[i], bookings: bookingsList.length };
+  }
+
+  return { ...hotelWithRooms, Rooms: withBookings };
 }
 
 export const hotelsService = {
