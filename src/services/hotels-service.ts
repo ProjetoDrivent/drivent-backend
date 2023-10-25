@@ -2,7 +2,7 @@ import { Room, TicketStatus, Hotel } from '@prisma/client';
 import { invalidDataError, notFoundError } from '@/errors';
 import { cannotListHotelsError } from '@/errors/cannot-list-hotels-error';
 import { bookingRepository, enrollmentRepository, hotelRepository, ticketsRepository } from '@/repositories';
-import { DEFAULT_EXP, getAsync, setAsync } from '@/config/redis';
+import redis, { DEFAULT_EXP, getAsync, setAsync } from '@/config/redis';
 
 async function validateUserBooking(userId: number) {
   const enrollment = await enrollmentRepository.findWithAddressByUserId(userId);
@@ -22,7 +22,7 @@ async function getHotels(userId: number): Promise<Hotel[]> {
   await validateUserBooking(userId);
 
   const cacheKey = `hotels`;
-  const cachedHotels = await getAsync(cacheKey);
+  const cachedHotels = await redis.get(cacheKey);
 
   if (cachedHotels) {
     console.log("Returning hotels from cache...");
@@ -32,7 +32,7 @@ async function getHotels(userId: number): Promise<Hotel[]> {
   const hotels = await hotelRepository.findHotels();
   if (hotels.length === 0) throw notFoundError();
 
-  await setAsync(cacheKey, JSON.stringify(hotels), 'EX', DEFAULT_EXP);
+  redis.setEx(cacheKey, DEFAULT_EXP, JSON.stringify(hotels));
 
   return hotels;
 }
@@ -60,7 +60,7 @@ async function getHotelsWithRooms(userId: number, hotelId: number) {
     withBookings[i] = { ...withBookings[i], bookings: bookingsList.length };
   }
 
-  await setAsync(cacheKey, JSON.stringify(hotelWithRooms), 'EX', DEFAULT_EXP);
+  redis.setEx(cacheKey, DEFAULT_EXP, JSON.stringify(hotelWithRooms));
 
   return { ...hotelWithRooms, Rooms: withBookings };
 }
