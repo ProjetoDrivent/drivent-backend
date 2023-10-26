@@ -43,7 +43,7 @@ async function getHotelsWithRooms(userId: number, hotelId: number) {
   if (!hotelId || isNaN(hotelId)) throw invalidDataError('hotelId');
 
   const cacheKey = `hotels:${hotelId}`;
-  const cachedHotelWithRooms = await getAsync(cacheKey);
+  const cachedHotelWithRooms = await redis.get(cacheKey);
 
   if (cachedHotelWithRooms) {
     console.log("Returning hotels with rooms from cache...");
