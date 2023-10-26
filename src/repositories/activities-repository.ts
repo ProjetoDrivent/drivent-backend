@@ -1,8 +1,8 @@
 import { prisma } from '@/config';
 
-async function findActivitiesByDayIdRepository(dayId: number) {
+async function findActivitiesByDayIdRepository(dayId: number, placeId: number) {
   const activities = await prisma.activity.findMany({
-    where: { dayId },
+    where: { dayId, placeId },
   });
   return activities;
 }

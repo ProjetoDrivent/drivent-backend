@@ -1,7 +1,7 @@
-import { activitiesRepository } from '@/repositories/activities-repository';
+import { activitiesRepository } from '@/repositories';
 
-async function getActivitiesByDayIdService(dayId: number) {
-  const activities = await activitiesRepository.findActivitiesByDayIdRepository(dayId);
+async function getActivitiesByDayIdService(dayId: number, placeId: number) {
+  const activities = await activitiesRepository.findActivitiesByDayIdRepository(dayId, placeId);
   return activities;
 }
 
