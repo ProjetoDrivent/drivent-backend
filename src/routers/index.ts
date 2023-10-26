@@ -6,3 +6,5 @@ export * from './tickets-router';
 export * from './paymets-router';
 export * from './hotels-router';
 export * from './booking-router';
+export * from './days-router';
+export * from './activities-router';

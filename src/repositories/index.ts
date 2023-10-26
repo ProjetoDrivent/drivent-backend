@@ -8,3 +8,4 @@ export * from './payments-repository';
 export * from './hotels-repository';
 export * from './booking-repository';
 export * from './room-repository';
+export * from './days-repository';
