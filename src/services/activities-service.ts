@@ -1,7 +1,7 @@
 import { activitiesRepository } from '@/repositories';
 
-async function getActivitiesByDayIdService(dayId: number, placeId: number) {
-  const activities = await activitiesRepository.findActivitiesByDayIdRepository(dayId, placeId);
+async function getActivitiesByDayIdService() {
+  const activities = await activitiesRepository.findActivitiesByDayIdRepository();
   return activities;
 }
 

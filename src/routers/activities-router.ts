@@ -4,6 +4,6 @@ import { getActivitiesByDayId } from '@/controllers';
 
 const activitiesRouter = Router();
 
-activitiesRouter.all('/*', authenticateToken).get('/:dayId/:placeId', getActivitiesByDayId);
+activitiesRouter.all('/*', authenticateToken).get('/', getActivitiesByDayId);
 
 export { activitiesRouter };
