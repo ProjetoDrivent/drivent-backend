@@ -351,7 +351,7 @@ async function main() {
         //! Dia 3
         {
           eventName: 'Minecraft: montando o PC ideal Dia-3',
-          availableSlots: 30,
+          availableSlots: 1,
           startTime: dayjs().set('hour', 12).set('minute', 0).format('YYYY-MM-DDTHH:mm:ss.000') + 'Z',
           endTime: dayjs().set('hour', 12).set('minute', 0).add(1, 'hour').format('YYYY-MM-DDTHH:mm:ss.000') + 'Z',
           placeId: 1,
@@ -359,7 +359,7 @@ async function main() {
         },
         {
           eventName: 'LoL: montando o PC ideal Dia-3',
-          availableSlots: 30,
+          availableSlots: 0,
           startTime: dayjs().set('hour', 13).set('minute', 0).format('YYYY-MM-DDTHH:mm:ss.000') + 'Z',
           endTime: dayjs().set('hour', 13).set('minute', 0).add(1, 'hour').format('YYYY-MM-DDTHH:mm:ss.000') + 'Z',
           placeId: 1,
@@ -367,7 +367,7 @@ async function main() {
         },
         {
           eventName: 'Elden Ring: Matando a Malennia Dia-3',
-          availableSlots: 30,
+          availableSlots: 1,
           startTime: dayjs().set('hour', 14).set('minute', 0).format('YYYY-MM-DDTHH:mm:ss.000') + 'Z',
           endTime: dayjs().set('hour', 14).set('minute', 0).add(1, 'hour').format('YYYY-MM-DDTHH:mm:ss.000') + 'Z',
           placeId: 1,
@@ -375,7 +375,7 @@ async function main() {
         },
         {
           eventName: 'Elden Ring: Matando a Malennia Dia-3',
-          availableSlots: 30,
+          availableSlots: 0,
           startTime: dayjs().set('hour', 12).set('minute', 0).format('YYYY-MM-DDTHH:mm:ss.000') + 'Z',
           endTime: dayjs().set('hour', 12).set('minute', 0).add(1, 'hour').format('YYYY-MM-DDTHH:mm:ss.000') + 'Z',
           placeId: 2,
@@ -383,7 +383,7 @@ async function main() {
         },
         {
           eventName: 'Minecraft: montando o PC ideal Dia-3',
-          availableSlots: 30,
+          availableSlots: 0,
           startTime: dayjs().set('hour', 13).set('minute', 0).format('YYYY-MM-DDTHH:mm:ss.000') + 'Z',
           endTime: dayjs().set('hour', 13).set('minute', 0).add(1, 'hour').format('YYYY-MM-DDTHH:mm:ss.000') + 'Z',
           placeId: 2,
@@ -391,7 +391,7 @@ async function main() {
         },
         {
           eventName: 'LoL: montando o PC ideal Dia-3',
-          availableSlots: 30,
+          availableSlots: 1,
           startTime: dayjs().set('hour', 14).set('minute', 0).format('YYYY-MM-DDTHH:mm:ss.000') + 'Z',
           endTime: dayjs().set('hour', 14).set('minute', 0).add(1, 'hour').format('YYYY-MM-DDTHH:mm:ss.000') + 'Z',
           placeId: 2,
@@ -399,7 +399,7 @@ async function main() {
         },
         {
           eventName: 'LoL: montando o PC ideal Dia-3',
-          availableSlots: 30,
+          availableSlots: 0,
           startTime: dayjs().set('hour', 12).set('minute', 0).format('YYYY-MM-DDTHH:mm:ss.000') + 'Z',
           endTime: dayjs().set('hour', 12).set('minute', 0).add(1, 'hour').format('YYYY-MM-DDTHH:mm:ss.000') + 'Z',
           placeId: 3,
@@ -407,7 +407,7 @@ async function main() {
         },
         {
           eventName: 'Elden Ring: Matando a Malennia Dia-3',
-          availableSlots: 30,
+          availableSlots: 0,
           startTime: dayjs().set('hour', 13).set('minute', 0).format('YYYY-MM-DDTHH:mm:ss.000') + 'Z',
           endTime: dayjs().set('hour', 13).set('minute', 0).add(1, 'hour').format('YYYY-MM-DDTHH:mm:ss.000') + 'Z',
           placeId: 3,
@@ -415,7 +415,7 @@ async function main() {
         },
         {
           eventName: 'Minecraft: montando o PC ideal Dia-3',
-          availableSlots: 30,
+          availableSlots: 1,
           startTime: dayjs().set('hour', 14).set('minute', 0).format('YYYY-MM-DDTHH:mm:ss.000') + 'Z',
           endTime: dayjs().set('hour', 14).set('minute', 0).add(1, 'hour').format('YYYY-MM-DDTHH:mm:ss.000') + 'Z',
           dayId: 3,
