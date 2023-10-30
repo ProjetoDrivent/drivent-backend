@@ -50,6 +50,37 @@ async function findActivitiesByDayIdRepository() {
   return activities;
 }
 
+async function findUserActivitiesByUserId(userId: number) {
+  const userActivities = await prisma.userActivity.findMany({
+    where: { userId },
+    include: { Activity: true },
+  });
+  return userActivities;
+}
+
+async function findUserActivityByUserIdAndActivityId(userId: number, activityId: number) {
+  const userActivity = await prisma.userActivity.findFirst({
+    where: { userId, activityId },
+  });
+  return userActivity;
+}
+
+async function enrollUserInActivity(userId: number, activityId: number) {
+  const [activity, userActivity] = await prisma.$transaction([
+    prisma.activity.update({
+      where: { id: activityId },
+      data: { availableSlots: { decrement: 1 } },
+    }),
+    prisma.userActivity.create({
+      data: { userId, activityId },
+    }),
+  ]);
+  return { activity, userActivity };
+}
+
 export const activitiesRepository = {
   findActivitiesByDayIdRepository,
+  findUserActivitiesByUserId,
+  enrollUserInActivity,
+  findUserActivityByUserIdAndActivityId,
 };

@@ -10,3 +10,4 @@ export * from './duplicate-email-error';
 export * from './enrollment-not-found-error';
 export * from './invalid-cep-error';
 export * from './cannot-book-error';
+export * from './cannot-enroll-in-new-activity';
