@@ -3,12 +3,25 @@ import dayjs from 'dayjs';
 import { notFoundError } from '@/errors';
 import { eventRepository } from '@/repositories';
 import { exclude } from '@/utils/prisma-utils';
+import redis, { DEFAULT_EXP } from '@/config/redis';
 
 async function getFirstEvent(): Promise<GetFirstEventResult> {
+  const cacheKey = `event`;
+  const cachedEvent = await redis.get(cacheKey);
+
+  if (cachedEvent) {
+    console.log("Returning event from cache...");
+    return JSON.parse(cachedEvent);
+  }
+
   const event = await eventRepository.findFirst();
   if (!event) throw notFoundError();
 
-  return exclude(event, 'createdAt', 'updatedAt');
+  const result =  exclude(event, 'createdAt', 'updatedAt');
+
+  redis.setEx(cacheKey, DEFAULT_EXP, JSON.stringify(result));
+
+  return result;
 }
 
 export type GetFirstEventResult = Omit<Event, 'createdAt' | 'updatedAt'>;
