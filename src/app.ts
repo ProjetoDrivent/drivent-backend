@@ -12,8 +12,11 @@ import {
   paymentsRouter,
   hotelsRouter,
   bookingRouter,
+  activitiesRouter,
+  dayRouter,
 } from '@/routers';
 import { loadEnv, connectDb, disconnectDB } from '@/config';
+import { placesRouter } from './routers/places-router';
 
 loadEnv();
 
@@ -30,6 +33,9 @@ app
   .use('/payments', paymentsRouter)
   .use('/hotels', hotelsRouter)
   .use('/booking', bookingRouter)
+  .use('/days', dayRouter)
+  .use('/activities', activitiesRouter)
+  .use('/places', placesRouter)
   .use(handleApplicationErrors);
 
 export function init(): Promise<Express> {
